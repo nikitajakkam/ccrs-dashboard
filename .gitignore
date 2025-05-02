@@ -1,0 +1,6 @@
+# Airflow
+.env
+airflow.cfg
+
+# GCP
+credentials.json
