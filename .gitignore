@@ -5,9 +5,10 @@ airflow/logs
 # GCP
 *.json
 .env
+.gcp/
+.gcp/credentials.json
 
 # Terraform
-# Local Terraform state files
 *.tfstate
 *.tfstate.*
 crash.log
@@ -18,3 +19,10 @@ override.tf.json
 *.tfvars
 *.tfplan
 *.bak
+
+# Data
+*.csv
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+__pycache__
