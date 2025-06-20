@@ -107,18 +107,18 @@ def clean_raw_crash_data(csv_file, proc_parquet_file):
         errors='coerce'
     ).dt.time
     
-    # Apply same condition for crash time data to notification time data
-    df["notificationtimedescription"] = pd.to_numeric(
-        df["notificationtimedescription"].astype(str).str.replace(":", "", regex=False),
-        errors='coerce'
-    ).astype("Int64")
+    # # Apply same condition for crash time data to notification time data
+    # df["notificationtimedescription"] = pd.to_numeric(
+    #     df["notificationtimedescription"].astype(str).str.replace(":", "", regex=False),
+    #     errors='coerce'
+    # ).astype("Int64")
 
-    # Convert notification time to a time value
-    df["notificationtimedescription"] = pd.to_datetime(
-        df["notificationtimedescription"].apply(lambda x: str(x).zfill(4)),
-        format='%H%M',
-        errors='coerce'
-    ).dt.time
+    # # Convert notification time to a time value
+    # df["notificationtimedescription"] = pd.to_datetime(
+    #     df["notificationtimedescription"].apply(lambda x: str(x).zfill(4)),
+    #     format='%H%M',
+    #     errors='coerce'
+    # ).dt.time
     
     expected_schema = {
         "collision_id": "Int64",
@@ -183,7 +183,7 @@ def clean_raw_crash_data(csv_file, proc_parquet_file):
         "isfreeway": "boolean",
         "chp555version": "Int64",
         "isadditonalobjectstruck": "Int64",
-        # "notificationtimedescription": "Int64",
+        "notificationtimedescription": "Int64",
         "hasdigitalmediafiles": "boolean",
         "evidencenumber": "string",
         "islocationrefertonarrative": "boolean",
@@ -191,7 +191,7 @@ def clean_raw_crash_data(csv_file, proc_parquet_file):
     }
     
     for col, dtype in expected_schema.items():
-        if col in df.columns and col not in ['crash_date_time', 'prepareddate', 'revieweddate', 'createddate', 'modifieddate', 'notificationdate', 'crash_time_description', 'notificationtimedescription']:
+        if col in df.columns and col not in ['crash_date_time', 'prepareddate', 'revieweddate', 'createddate', 'modifieddate', 'notificationdate', 'crash_time_description']:
             df[col] = df[col].astype(dtype)
         
     print(f"Columns: {df.columns.tolist()}")
@@ -339,7 +339,7 @@ create_final_table_task = BigQueryInsertJobOperator(
                     chp555version INT64,
                     isadditonalobjectstruck INT64,
                     notificationdate TIMESTAMP,
-                    notificationtimedescription TIME,
+                    notificationtimedescription INT64,
                     hasdigitalmediafiles BOOLEAN,
                     evidencenumber STRING,
                     islocationrefertonarrative BOOLEAN,
