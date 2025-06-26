@@ -8,9 +8,6 @@ from airflow.providers.google.cloud.hooks.gcs import GCSHook
 from airflow.providers.google.cloud.operators.bigquery import BigQueryInsertJobOperator
 from airflow.providers.google.cloud.operators.bigquery import BigQueryCreateExternalTableOperator
 import requests
-import pyarrow
-import pyarrow.csv
-import pyarrow.parquet 
 import pandas as pd
 
 # GCP Project Information
@@ -107,11 +104,11 @@ def clean_raw_crash_data(csv_file, proc_parquet_file):
         errors='coerce'
     ).dt.time
     
-    # # Apply same condition for crash time data to notification time data
-    # df["notificationtimedescription"] = pd.to_numeric(
-    #     df["notificationtimedescription"].astype(str).str.replace(":", "", regex=False),
-    #     errors='coerce'
-    # ).astype("Int64")
+    # Apply same condition for crash time data to notification time data
+    df["notificationtimedescription"] = pd.to_numeric(
+        df["notificationtimedescription"].astype(str).str.replace(":", "", regex=False),
+        errors='coerce'
+    ).astype("Int64")
 
     # # Convert notification time to a time value
     # df["notificationtimedescription"] = pd.to_datetime(
@@ -183,7 +180,7 @@ def clean_raw_crash_data(csv_file, proc_parquet_file):
         "isfreeway": "boolean",
         "chp555version": "Int64",
         "isadditonalobjectstruck": "Int64",
-        "notificationtimedescription": "Int64",
+        # "notificationtimedescription": "Int64",
         "hasdigitalmediafiles": "boolean",
         "evidencenumber": "string",
         "islocationrefertonarrative": "boolean",
@@ -191,7 +188,7 @@ def clean_raw_crash_data(csv_file, proc_parquet_file):
     }
     
     for col, dtype in expected_schema.items():
-        if col in df.columns and col not in ['crash_date_time', 'prepareddate', 'revieweddate', 'createddate', 'modifieddate', 'notificationdate', 'crash_time_description']:
+        if col in df.columns and col not in ['crash_date_time', 'prepareddate', 'revieweddate', 'createddate', 'modifieddate', 'notificationdate', 'crash_time_description', 'notificationtimedescription']:
             df[col] = df[col].astype(dtype)
         
     print(f"Columns: {df.columns.tolist()}")
