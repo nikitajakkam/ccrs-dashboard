@@ -1,0 +1,28 @@
+# Airflow
+airflow.cfg
+airflow/logs
+
+# GCP
+*.json
+.env
+.gcp/
+.gcp/credentials.json
+
+# Terraform
+*.tfstate
+*.tfstate.*
+crash.log
+.terraform/
+.terraform.lock.hcl
+override.tf
+override.tf.json
+*.tfvars
+*.tfplan
+*.bak
+
+# Data
+*.csv
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+__pycache__
