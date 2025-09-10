@@ -1,0 +1,99 @@
+version: 2
+
+models:
+
+# FACT TABLE
+  - name: fct_crashes
+    description: "Fact table containing crash events with all crash attributes."
+    columns:
+      - name: collision_id
+        description: "The unique identifier of the crash report"
+      - name: ncic_code
+        description: "A four numerical value assigned by the DOJ (Dept of Justice)"
+      - name: crash_date
+        description: "Crash date extracted from crash_date_time (YYYY-MM-DD)"
+      - name: crash_time
+        description: "Crash / collision time using a 24-hour clock"
+      - name: beat
+        description: "Assigned patrol area. The number may be 1-3 digits"
+      - name: city_id
+        description: "Unique city identifer. Used within CCRS system for internal storage"
+      - name: city_code
+        description: "Unique code of city where the crash occurred"
+      - name: city_name
+        description: "Name of city where crash occurred"
+      - name: county_code
+        description: "Unique code of county where crash occurred"
+      - name: is_city_active
+        description: "Defined by CHP whether the city is valid or not in the CCRS database"
+      - name: is_city_incorporated
+        description: "As defined by the state of California, an area that has its own municipal government"
+      - name: collision_description_1
+        description: "Description of the collision (e.g. side swip, rear end, hit object)"
+      - name: collision_description_2
+        description: "Additional description of the collision (e.g. side swip, rear end, hit object)"
+      - name: day_of_week
+        description: "The day of the week when the crash occurred"
+      - name: is_dispatch_notified
+        description: "Whether dispatch was notified"
+      - name: hit_and_run
+        description: "Whether or not the crash was a hit and run and if it was a misdemeanor or felony"
+      - name: is_highway_related
+        description: "If a crash happened on a highway or not"
+      - name: is_tow_away
+        description: "If vehicles involved in the crash were towed away or not"
+      - name: judicial_district
+        description: "Judicial district where the crash occurred"
+      - name: motor_vehicle_involved_with_crash_description_1
+        description: "Description of the motor vehicle or object involved with the crash"
+      - name: motor_vehicle_involved_with_crash_description_2
+        description: "Additional description of the motor vehicle or object involved with the crash"
+      - name: number_injured
+        description: "Number injured in the crash"
+      - name: number_killed
+        description: "Number killed in the crash"
+      - name: weather_1
+        description: "Weather condition at the time of the crash"
+      - name: weather_2
+        description: "Additional weather condition at the time of the crash"
+      - name: road_condition_1
+        description: "Roadway condition at the time of the crash in the traffic lane(s) involved"
+      - name: road_condition_2
+        description: "Second roadway condition at the time of the crash in the traffic lane(s) involved"
+      - name: lighting_description
+        description: "Lighting condition at the time of the crash"
+      - name: latitude
+        description: "Latitude of crash"
+      - name: longitude
+        description: "Longitude of crash"
+      - name: pedestrian_action_description
+        description: "Description of action of pedestrian involved in crash at time of crash if applicable"
+      - name: primary_collision_factor_description
+        description: "Primary crash factor"
+      - name: primary_road
+        description: "Road / location where crash occurred"
+      - name: roadway_surface_description
+        description: "Description of roadway surface at time of crash"
+      - name: secondary_road
+        description: "The nearest crossed road where the crash occurred"
+      - name: traffic_control_device_description
+        description: "Description of traffic control device at crash site"
+      - name: is_county_road
+        description: "If the crash occurred on a county road or not"
+      - name: is_freeway
+        description: "If crash occurred on the highway or not"
+
+# DIMENSION TABLE
+  - name: dim_date
+    description: "Dimension table for crash date and time."
+    columns:
+      - name: crash_date
+        description: "Crash date extracted from crash_date_time (YYYY-MM-DD)"
+      - name: crash_time
+        description: "Crash / collision time using a 24-hour clock"
+      - name: crash_year
+        description: "Year extracted from crash_date"
+      - name: crash_quarter
+        description: "Quarter extracted from crash_date"
+      - name: crash_hour
+        description: "Hour extracted from crash_time"
