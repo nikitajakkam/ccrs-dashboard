@@ -33,3 +33,18 @@ clean-targets:         # directories to be removed by `dbt clean`
 
 models:
   ccrs_dashboard:
+    +materialized: view  # default for all models in this project
+
+seeds:
+  ccrs_dashboard:
+    dhcs_county_codes_reference:
+      +column_types:
+        dhcs_county_code: integer
+        county_name: string
+        county_region_code: string
+        county_region_description: string
+        fips_county_code: integer
+        fips_state_county_code: integer
+        north_south_indicator: string
+
+

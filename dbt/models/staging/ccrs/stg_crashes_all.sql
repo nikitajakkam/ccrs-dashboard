@@ -13,6 +13,7 @@ selected as (
         and crash_date_time is not null
         and latitude != 0 
         and longitude != 0
+        and is_preliminary = false
 ),
 
 latest_version as (
@@ -66,9 +67,9 @@ cleaned as (
             else 'Unknown'
         end as is_city_incorporated,
 
-        initcap(lower(collision_type_description)) as collision_description,
+        initcap(lower(collision_type_description)) as collision_description_1,
         
-        initcap(lower(collision_type_other_desc)) as collision_secondary_description,
+        initcap(lower(collision_type_other_desc)) as collision_description_2,
         
         initcap(lower(day_of_week)) as day_of_week,
 
@@ -77,7 +78,7 @@ cleaned as (
             when 'No' then 'No'
             when 'NotApplicable' then 'Not Applicable'
             else 'Unknown'
-        end as dispatch_notified,
+        end as is_dispatch_notified,
 
         case hitrun
             when 'M' then 'Felony'
@@ -105,33 +106,33 @@ cleaned as (
 
         initcap(lower(judicialdistrict)) as judicial_district,
 
-        initcap(lower(motorvehicleinvolvedwithdesc)) as motor_vehicle_involved_with_crash_description,
+        initcap(lower(motorvehicleinvolvedwithdesc)) as motor_vehicle_involved_with_crash_description_1,
 
-        initcap(lower(motorvehicleinvolvedwithotherdesc)) as motor_vehicle_involved_with_crash_secondary_description,
+        initcap(lower(motorvehicleinvolvedwithotherdesc)) as motor_vehicle_involved_with_crash_description_2,
 
         numberinjured as number_injured,
         numberkilled as number_killed,
 
-        initcap(lower(weather_1)) as weather,
+        initcap(lower(weather_1)) as weather_1,
 
         case 
             when lower(weather_2) in ('hail', 'hailing') then 'Hail'
             when lower(weather_2) in ('smoke', 'smokey') then 'Smoke'
             else initcap(lower(weather_2))
-        end as weather_additional,
+        end as weather_2,
 
         case
-            when upper(road_condition_1) like 'HOLES%' then 'Holes, Deep Ruts'
-            when upper(road_condition_1) like 'LOOSE MATERIAL ON ROADWAY%' then 'Loose Material on Roadway'
-            when upper(road_condition_1) like 'OBSTRUCTION ON ROADWAY%' then 'Obstruction on Roadway'
-            when upper(road_condition_1) like 'CONSTRUCTION%' then 'Construction or Repair Zone'
-            when upper(road_condition_1) like 'REDUCED ROADWAY WIDTH%' then 'Reduced Roadway Width'
-            when upper(road_condition_1) like 'FLOODED%' then 'Flooded'
-            when upper(road_condition_1) like 'OTHER%' then 'Other'
-            when upper(road_condition_1) like 'NO UNUSUAL CONDITION%' then 'No Unusual Conditions'
-            else initcap(lower(road_condition_1))
-        end as road_condition,
-        
+            when upper(trim(road_condition_1)) like 'HOLES%' then 'Holes, Deep Ruts'
+            when upper(trim(road_condition_1)) like 'LOOSE MATERIAL ON ROADWAY%' then 'Loose Material on Roadway'
+            when upper(trim(road_condition_1)) like 'OBSTRUCTION%' then 'Obstruction on Roadway'
+            when upper(trim(road_condition_1)) like 'CONSTRUCTION%' then 'Construction or Repair Zone'
+            when upper(trim(road_condition_1)) like 'REDUCED ROADWAY WIDTH%' then 'Reduced Roadway Width'
+            when upper(trim(road_condition_1)) like 'FLOODED%' then 'Flooded'
+            when upper(trim(road_condition_1)) like 'OTHER%' then 'Other'
+            when upper(trim(road_condition_1)) like 'NO UNUSUAL CONDITION%' then 'No Unusual Conditions'
+            else 'Unknown'
+        end as road_condition_1,
+
         case
             when upper(road_condition_2) like 'HOLES%' then 'Holes, Deep Ruts'
             when upper(road_condition_2) like 'LOOSE MATERIAL ON ROADWAY%' then 'Loose Material on Roadway'
@@ -141,8 +142,8 @@ cleaned as (
             when upper(road_condition_2) like 'FLOODED%' then 'Flooded'
             when upper(road_condition_2) like 'OTHER%' then 'Other'
             when upper(road_condition_2) like 'NO UNUSUAL CONDITION%' then 'No Unusual Conditions'
-            else initcap(lower(road_condition_2))
-        end as road_condition_additional,
+            else 'Unknown'
+        end as road_condition_2,
 
         initcap(lower(lightingdescription)) as lighting_description,
 
@@ -159,7 +160,7 @@ cleaned as (
             when 'E' then 'Fell Asleep'
             when null then 'Not Stated'
             else initcap(lower(primary_collision_factor_code))  
-        end as primary_collision_factor_code,
+        end as primary_collision_factor_description,
 
         primary_collision_factor_violation,
 

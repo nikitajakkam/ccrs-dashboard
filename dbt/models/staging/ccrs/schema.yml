@@ -56,16 +56,16 @@ models:
         tests:
           - accepted_values:
               values: ['Yes', 'No', 'Unknown']
-      - name: collision_description
+      - name: collision_description_1
         description: "Description of the collision (e.g. side swip, rear end, hit object)"
-      - name: collision_secondary_description
+      - name: collision_description_2
         description: "Additional description of the collision (e.g. side swip, rear end, hit object)"
       - name: day_of_week
         description: ""
         tests:
           - accepted_values:
               values: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
-      - name: dispatch_notified
+      - name: is_dispatch_notified
         description: "The day of the week when the crash occurred"
         tests:
           - accepted_values:
@@ -89,21 +89,21 @@ models:
               values: ['Yes', 'No', 'Unknown']
       - name: judicial_district
         description: "Judicial district where the crash occurred"
-      - name: motor_vehicle_involved_with_crash_description
+      - name: motor_vehicle_involved_with_crash_description_1
         description: "Description of the motor vehicle or object involved with the crash"
-      - name: motor_vehicle_involved_with_crash_secondary_description
+      - name: motor_vehicle_involved_with_crash_description_2
         description: "Additional description of the motor vehicle or object involved with the crash"
       - name: number_injured
         description: "Number injured in the crash"
       - name: number_killed
         description: "Number killed in the crash"
-      - name: weather
+      - name: weather_1
         description: "Weather condition at the time of the crash"
-      - name: weather_additional
+      - name: weather_2
         description: "Additional weather condition at the time of the crash"
-      - name: road_condition
+      - name: road_condition_1
         description: "Roadway condition at the time of the crash in the traffic lane(s) involved"
-      - name: road_condition_additional
+      - name: road_condition_2
         description: "Second roadway condition at the time of the crash in the traffic lane(s) involved"
       - name: lighting_description
         description: "Lighting condition at the time of the crash"
@@ -113,7 +113,7 @@ models:
         description: "Longitude of crash"
       - name: pedestrian_action_description
         description: "Description of action of pedestrian involved in crash at time of crash if applicable"
-      - name: primary_collision_factor_code
+      - name: primary_collision_factor_description
         description: "Primary crash factor"
         tests:
           - accepted_values:
