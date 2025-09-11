@@ -58,10 +58,13 @@ models:
               values: ['Yes', 'No', 'Unknown']
       - name: collision_description_1
         description: "Description of the collision (e.g. side swip, rear end, hit object)"
+        tests:
+          - accepted_values:
+              values: ['Rear End', 'Side Swipe', 'Hit Object', 'Broadside', 'Head-On', 'Overturned', 'Other', 'Vehicle/Pedestrian', 'Unknown']
       - name: collision_description_2
         description: "Additional description of the collision (e.g. side swip, rear end, hit object)"
       - name: day_of_week
-        description: ""
+        description: "Day of the week of the crash"
         tests:
           - accepted_values:
               values: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
@@ -91,6 +94,9 @@ models:
         description: "Judicial district where the crash occurred"
       - name: motor_vehicle_involved_with_crash_description_1
         description: "Description of the motor vehicle or object involved with the crash"
+        tests:
+          - accepted_values:
+              values: ['Other Motor Vehicle','Fixed Object','Parked Motor Vehicle','Non-Collision','Other Object','Pedestrian','Bicycle','Animal','Motor Vehicle On Other Roadway','Train','Unknown']
       - name: motor_vehicle_involved_with_crash_description_2
         description: "Additional description of the motor vehicle or object involved with the crash"
       - name: number_injured
@@ -99,20 +105,38 @@ models:
         description: "Number killed in the crash"
       - name: weather_1
         description: "Weather condition at the time of the crash"
+        tests:
+          - accepted_values:
+              values: ['Clear/Sunny', 'Cloudy', 'Foggy', 'Rain', 'Snow', 'Dust/Smoke', 'Windy', 'Indoor', 'Unknown or Other']
       - name: weather_2
         description: "Additional weather condition at the time of the crash"
+        tests:
+          - accepted_values:
+              values: ['Clear/Sunny', 'Cloudy', 'Foggy', 'Rain', 'Snow', 'Dust/Smoke', 'Windy', 'Indoor', 'Unknown or Other', 'Unknown']
       - name: road_condition_1
         description: "Roadway condition at the time of the crash in the traffic lane(s) involved"
+        tests:
+          - accepted_values:
+              values:  ['Holes, Deep Ruts', 'Loose Material on Roadway', 'Obstruction on Roadway', 'Construction or Repair Zone', 'Reduced Roadway Width', 'Flooded', 'Other', 'No Unusual Conditions', 'Unknown']
       - name: road_condition_2
         description: "Second roadway condition at the time of the crash in the traffic lane(s) involved"
+        tests:
+          - accepted_values:
+              values:  ['Holes, Deep Ruts', 'Loose Material on Roadway', 'Obstruction on Roadway', 'Construction or Repair Zone', 'Reduced Roadway Width', 'Flooded', 'Other', 'No Unusual Conditions', 'Unknown']
       - name: lighting_description
         description: "Lighting condition at the time of the crash"
+        tests:
+          - accepted_values:
+              values: ['Daylight', 'Dark - Street Lights', 'Dark - No Street Lights', 'Dusk/Dawn', 'Dark - Street Lights Not Functioning', 'Unknown']
       - name: latitude
         description: "Latitude of crash"
       - name: longitude
         description: "Longitude of crash"
       - name: pedestrian_action_description
         description: "Description of action of pedestrian involved in crash at time of crash if applicable"
+        tests:
+          - accepted_values:
+              values: ['No Pedestrians Involved', 'Crossing In Cross Walk At Intersection', 'In Road - Includes Shoulder', 'Crossing - Not In Crosswalk', 'Not In Road', 'Crossing In Cross Walk - Not At Intersection', 'Approaching/Leaving School Bus', 'Unknown']
       - name: primary_collision_factor_description
         description: "Primary crash factor"
         tests:

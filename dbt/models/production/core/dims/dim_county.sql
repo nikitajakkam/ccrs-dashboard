@@ -11,6 +11,6 @@ select
     fips_state_county_code,
     north_south_indicator
 from
-     {{ 
-        ref('dhcs_county_codes') 
+    {{ 
+        ref('dhcs_county_code_reference') 
     }}
