@@ -1,0 +1,59 @@
+dhcs_county_code,county_name,county_region_code,county_region_description,fips_county_code,fips_state_county_code,north_south_indicator
+1,Alameda,G,San Jose,1,6001,N
+2,Alpine,C,Sacramento,3,6003,N
+3,Amador,C,Sacramento,5,6005,N
+4,Butte,C,Sacramento,7,6007,N
+5,Calaveras,C,Sacramento,9,6009,N
+6,Colusa,C,Sacramento,11,6011,N
+7,Contra Costa,G,San Jose,13,6013,N
+8,Del Norte,F,San Francisco,15,6015,N
+9,El Dorado,C,Sacramento,17,6017,N
+10,Fresno,A,Fresno,19,6019,N
+11,Glenn,C,Sacramento,21,6021,N
+12,Humboldt,F,San Francisco,23,6023,N
+13,Imperial,E,San Diego,25,6025,S
+14,Inyo,G,San Jose,27,6027,N
+15,Kern,A,Fresno,29,6029,S
+16,Kings,A,Fresno,31,6031,N
+17,Lake,F,San Francisco,33,6033,N
+18,Lassen,C,Sacramento,35,6035,N
+19,Los Angeles,B,Los Angeles,37,6037,S
+20,Madera,A,Fresno,39,6039,N
+21,Marin,F,San Francisco,41,6041,N
+22,Mariposa,A,Fresno,43,6043,N
+23,Mendocino,F,San Francisco,45,6045,N
+24,Merced,A,Fresno,47,6047,N
+25,Modoc,C,Sacramento,49,6049,N
+26,Mono,D,San Bernardino,51,6051,N
+27,Monterey,G,San Jose,53,6053,N
+28,Napa,F,San Francisco,55,6055,N
+29,Nevada,C,Sacramento,57,6057,N
+30,Orange,D,San Bernardino,59,6059,S
+31,Placer,C,Sacramento,61,6061,N
+32,Plumas,C,Sacramento,63,6063,N
+33,Riverside,D,San Bernardino,65,6065,S
+34,Sacramento,C,Sacramento,67,6067,N
+35,San Benito,G,San Jose,69,6069,N
+36,San Bernardino,D,San Bernardino,71,6071,S
+37,San Diego,E,San Diego,73,6073,S
+38,San Francisco,F,San Francisco,75,6075,N
+39,San Joaquin,C,Sacramento,77,6077,N
+40,San Luis Obispo,G,San Jose,79,6079,S
+41,San Mateo,F,San Francisco,81,6081,N
+42,Santa Barbara,G,San Jose,83,6083,S
+43,Santa Clara,G,San Jose,85,6085,N
+44,Santa Cruz,G,San Jose,87,6087,N
+45,Shasta,C,Sacramento,89,6089,N
+46,Sierra,C,Sacramento,91,6091,N
+47,Siskiyou,C,Sacramento,93,6093,N
+48,Solano,F,San Francisco,95,6095,N
+49,Sonoma,F,San Francisco,97,6097,N
+50,Stanislaus,A,Fresno,99,6099,N
+51,Sutter,C,Sacramento,101,6101,N
+52,Tehama,C,Sacramento,103,6103,N
+53,Trinity,C,Sacramento,105,6105,N
+54,Tulare,A,Fresno,107,6107,N
+55,Tuolumne,A,Fresno,109,6109,N
+56,Ventura,B,Los Angeles,111,6111,S
+57,Yolo,C,Sacramento,113,6113,N
+58,Yuba,C,Sacramento,115,6115,N

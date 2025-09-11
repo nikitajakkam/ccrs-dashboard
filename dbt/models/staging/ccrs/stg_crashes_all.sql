@@ -36,168 +36,84 @@ cleaned as (
         report_number,
         report_version,
 
-        case 
-            when is_preliminary = true then 'Preliminary'
-            when is_preliminary = false then 'Final'
-            else 'Unknown'
-        end as preliminary_status,
+        {{is_preliminary('is_preliminary')}} as preliminary_status,
 
         ncic_code,
 
         DATE(crash_date_time) as crash_date,
         
         crash_time_description as crash_time,
-        beat,
+        
+        coalesce(initcap(lower(beat)), 'Unknown') as beat,
+
         city_id,
         city_code,
 
-        initcap(lower(city_name)) as city_name,
+        coalesce(initcap(lower(city_name)), 'Unknown') as city_name,
 
         county_code,
 
-        case city_is_active
-            when true then 'Yes'
-            when false then 'No'
-            else 'Unknown'
-        end as is_city_active,
+        {{ boolean_to_yesno('city_is_active') }} as is_city_active,
 
-        case city_is_incorporated
-            when true then 'Yes'
-            when false then 'No'
-            else 'Unknown'
-        end as is_city_incorporated,
+        {{ boolean_to_yesno('city_is_incorporated') }} as is_city_incorporated,
 
-        initcap(lower(collision_type_description)) as collision_description_1,
+        {{ collision_description('collision_type_description') }} as collision_description_1,
         
-        initcap(lower(collision_type_other_desc)) as collision_description_2,
+        coalesce(initcap(lower(collision_type_other_desc)), 'Unknown') as collision_description_2,
         
         initcap(lower(day_of_week)) as day_of_week,
 
-        case dispatchnotified
-            when 'Yes' then 'Yes'
-            when 'No' then 'No'
-            when 'NotApplicable' then 'Not Applicable'
-            else 'Unknown'
-        end as is_dispatch_notified,
+        {{ dispatch_notified('dispatchnotified') }} as is_dispatch_notified,
 
-        case hitrun
-            when 'M' then 'Felony'
-            when 'F' then 'Misdemeanor'
-            else 'None'
-        end as hit_and_run,
+        {{ hit_and_run('hitrun') }} as hit_and_run,
 
-        case isdeleted
-            when true then 'Yes'
-            when false then 'No'
-            else 'Unknown'
-        end as is_deleted,
+        {{ boolean_to_yesno('isdeleted') }} as is_deleted,
 
-        case ishighwayrelated
-            when false then 'No'
-            when true then 'Yes'
-            else 'Unknown'
-        end as is_highway_related,
+        {{ boolean_to_yesno('ishighwayrelated') }} as is_highway_related,
+        
+        {{ boolean_to_yesno('istowaway') }} as is_tow_away,
 
-        case istowaway
-            when false then 'No'
-            when true then 'Yes'
-            else 'Unknown'
-        end as is_tow_away,
+        coalesce(initcap(lower(judicialdistrict)), 'Unknown') as judicial_district,
 
-        initcap(lower(judicialdistrict)) as judicial_district,
+        {{ motor_vehicle_description('motorvehicleinvolvedwithdesc') }} as motor_vehicle_involved_with_crash_description_1,
 
-        initcap(lower(motorvehicleinvolvedwithdesc)) as motor_vehicle_involved_with_crash_description_1,
-
-        initcap(lower(motorvehicleinvolvedwithotherdesc)) as motor_vehicle_involved_with_crash_description_2,
+        coalesce(initcap(lower(motorvehicleinvolvedwithotherdesc)), 'Unknown') as motor_vehicle_involved_with_crash_description_2,
 
         numberinjured as number_injured,
         numberkilled as number_killed,
 
-        initcap(lower(weather_1)) as weather_1,
+        {{ standardize_weather('weather_1') }} as weather_1,
 
-        case 
-            when lower(weather_2) in ('hail', 'hailing') then 'Hail'
-            when lower(weather_2) in ('smoke', 'smokey') then 'Smoke'
-            else initcap(lower(weather_2))
-        end as weather_2,
+        {{ standardize_weather('weather_2') }} as weather_2,
 
-        case
-            when upper(trim(road_condition_1)) like 'HOLES%' then 'Holes, Deep Ruts'
-            when upper(trim(road_condition_1)) like 'LOOSE MATERIAL ON ROADWAY%' then 'Loose Material on Roadway'
-            when upper(trim(road_condition_1)) like 'OBSTRUCTION%' then 'Obstruction on Roadway'
-            when upper(trim(road_condition_1)) like 'CONSTRUCTION%' then 'Construction or Repair Zone'
-            when upper(trim(road_condition_1)) like 'REDUCED ROADWAY WIDTH%' then 'Reduced Roadway Width'
-            when upper(trim(road_condition_1)) like 'FLOODED%' then 'Flooded'
-            when upper(trim(road_condition_1)) like 'OTHER%' then 'Other'
-            when upper(trim(road_condition_1)) like 'NO UNUSUAL CONDITION%' then 'No Unusual Conditions'
-            else 'Unknown'
-        end as road_condition_1,
+        {{ standardize_road_condition('road_condition_1') }} as road_condition_1,
 
-        case
-            when upper(road_condition_2) like 'HOLES%' then 'Holes, Deep Ruts'
-            when upper(road_condition_2) like 'LOOSE MATERIAL ON ROADWAY%' then 'Loose Material on Roadway'
-            when upper(road_condition_2) like 'OBSTRUCTION ON ROADWAY%' then 'Obstruction on Roadway'
-            when upper(road_condition_2) like 'CONSTRUCTION%' then 'Construction or Repair Zone'
-            when upper(road_condition_2) like 'REDUCED ROADWAY WIDTH%' then 'Reduced Roadway Width'
-            when upper(road_condition_2) like 'FLOODED%' then 'Flooded'
-            when upper(road_condition_2) like 'OTHER%' then 'Other'
-            when upper(road_condition_2) like 'NO UNUSUAL CONDITION%' then 'No Unusual Conditions'
-            else 'Unknown'
-        end as road_condition_2,
-
-        initcap(lower(lightingdescription)) as lighting_description,
+        {{ standardize_road_condition('road_condition_2') }} as road_condition_2,
+                
+        {{ lighting_description('lightingdescription') }} as lighting_description,
 
         latitude,
         longitude,
 
-        initcap(lower(pedestrianactiondesc)) as pedestrian_action_description,
+        {{ pedestrian_action_description('pedestrianactiondesc') }} as pedestrian_action_description,
 
-        case primary_collision_factor_code
-            when 'A' then '(Vehicle) Code Violation'
-            when 'B' then 'Other Improper Driving'
-            when 'C' then 'Other Than Driver'
-            when 'D' then 'Unknown'
-            when 'E' then 'Fell Asleep'
-            when null then 'Not Stated'
-            else initcap(lower(primary_collision_factor_code))  
-        end as primary_collision_factor_description,
+        {{ primary_collision_factor('primary_collision_factor_code') }} as primary_collision_factor_description,
 
         primary_collision_factor_violation,
 
         primarycollisionpartynumber as primary_collision_party_number,
-        primaryroad as primary_road,
 
-        case roadwaysurfacecode
-            when 'A' then 'Dry'
-            when 'B' then 'Wet'
-            when 'C' then 'Snowy/Icy'
-            when 'D' then 'Slippery (Mud, Oil, etc)'
-            when null then 'Not Stated'
-            else initcap(lower(roadwaysurfacecode))
-        end as roadway_surface_description,
+        initcap(lower(primaryroad)) as primary_road,
+
+        {{ roadway_surface('roadwaysurfacecode') }} as roadway_surface_description,
         
         initcap(lower(secondaryroad)) as secondary_road,
 
-        case trafficcontroldevicecode
-            when 'A' then 'Controls Functioning'
-            when 'B' then 'Controls Not Functioning'
-            when 'C' then 'Controls Obscured'
-            when 'D' then 'No Controls Present/Factor'
-            when null then 'Not Stated'
-            else initcap(lower(trafficcontroldevicecode))
-        end as traffic_control_device_description,
+        {{ traffic_control_device('trafficcontroldevicecode') }} as traffic_control_device_description,
 
-        case iscountyroad
-            when false then 'No'
-            when true then 'Yes'
-            else 'Unknown'
-        end as is_county_road,
+        {{ boolean_to_yesno('iscountyroad') }} as is_county_road,
 
-        case isfreeway
-            when false then 'No'
-            when true then 'Yes'
-            else 'Unknown'
-        end as is_freeway,
+        {{ boolean_to_yesno('isfreeway') }} as is_freeway
 
     from filtered
 )

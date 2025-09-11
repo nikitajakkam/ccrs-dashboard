@@ -3,3 +3,5 @@ dbt_packages/
 logs/
 profiles.yml
 .env
+!dhcs_county_code_reference.csv
+!weather_rules.csv
