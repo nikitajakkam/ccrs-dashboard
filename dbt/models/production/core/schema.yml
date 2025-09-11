@@ -16,10 +16,6 @@ models:
         description: "Crash / collision time using a 24-hour clock"
       - name: beat
         description: "Assigned patrol area. The number may be 1-3 digits"
-      - name: city_id
-        description: "Unique city identifer. Used within CCRS system for internal storage"
-      - name: city_code
-        description: "Unique code of city where the crash occurred"
       - name: city_name
         description: "Name of city where crash occurred"
       - name: county_code
