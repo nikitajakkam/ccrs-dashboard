@@ -12,8 +12,6 @@ select
     crash_date,
     crash_time,
     beat,
-    city_id,
-    city_code,
     city_name,
     county_code,
     is_city_active,
