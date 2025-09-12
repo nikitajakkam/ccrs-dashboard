@@ -3,7 +3,7 @@ version: 2
 models:
 
 # FACT TABLE
-  - name: reporting_crashes.sql
+  - name: reporting_crashes
     description: "Analytics and dashboard ready table containing crash events with crash attributes useful for analytics and reporting."
     columns:
       - name: collision_id
