@@ -55,3 +55,25 @@ brew install hashicorp/tap/terraform
       - Project ID: Project ID from Google CLoud
       - KeyFile Path: `/home/airflow/.gcp/credentials.json`
    4. Click the toggle next to the DAG called **ccrs_gcp_ingestion**. The steps in the DAG should now run and populate the GCS buckets and crashes dataset in BigQuery that we created with Terraform.
+
+## 5. Setting Up dbt  
+   1. I used dbt Cloud for this project hence why there is no `profiles.yml` file in this repo. [The Data Engineering Zoomcamp](https://github.com/DataTalksClub/data-engineering-zoomcamp/blob/main/04-analytics-engineering/dbt_cloud_setup.md) has some really great instructions that I followed here for getting my dbt environment set up which you can follow along with. If you'd prefer to use the CLI then you would need to:
+      1. Install dbt for BigQuery: `pip install dbt-bigquery`
+      2. Access the dbt folder: `cd dbt`
+      3. Creaet a profiles.yml file: `touch profiles.yml`
+      4. Fill in the file with the following information (this is just a guideline and may not be the exact setup):
+         ```
+         ccrs_dashboard:
+           target: dev
+           outputs:
+             dev:
+               type: bigquery
+               method: service-account
+               project: "add your gcp project id here"
+               dataset: crashes
+               keyfile: "add your /path/to/service-account.json" ** make sure to add this to your gitignore! **
+               threads: 4
+               timeout_seconds: 300
+               location: US
+         ```
+      5. Run `dbt build --profiles-dir ~/.dbt --target dev` to build all of the models.
