@@ -1,6 +1,7 @@
 # Setup Instructions
+Follow the steps in order to set up the project on your machine.
 
-## 1. Setting up Terraform
+## 1. Terraform
 Instructions for how to download and setup Terraform for your machine can be found here: [Terraform Install Tutorial](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli)  
 
 **For MacOS users (with Homebrew):**
@@ -9,7 +10,7 @@ brew tap hashicorp/tap
 brew install hashicorp/tap/terraform
 ```
 
-## 2. Setting Google Cloud
+## 2. Google Cloud Project
    1. Create an account on [Google Cloud Platform](https://cloud.google.com/) with your Google email.
    2. Setup a new Google Cloud project.
    3. Setup a Service Account in the project under **IAM & Admin > Service Accounts > + Create service account**. You can follow [Google's documentation](https://cloud.google.com/iam/docs/service-accounts-create) for setting up Service Accounts
@@ -27,7 +28,7 @@ brew install hashicorp/tap/terraform
        ```
    15. Run `gcloud auth application-default login` to verify you are logged in.
   
-  ## 3. Setting up GCS (Data Lake) & BigQuery (Data Warehouse)
+  ## 3. Running Terraform
    This project uses GCS (Google Cloud Storage) buckets as a data lake and BigQuery as a data warehouse. Terraform is used to provision the infrastructure.
    1. Navigate to the `terraform/variables.tf` and replace the project ID, region, and location with the ones for your project. If you exported your Google application credentials in the step up above Terraform will be able to authenticate to the Google Cloud Project.
    2. Run the following commands to initialize 2 GCS buckets and a BigQuery dataset:
@@ -37,7 +38,7 @@ brew install hashicorp/tap/terraform
    terraform apply
    ```
 
-## 4. Setting up Airflow (Workflow Orchestration)
+## 4. Running Airflow
    1. Navigate to the `airflow/` folder and run:
       ```
        docker-compose build
