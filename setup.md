@@ -76,4 +76,4 @@ brew install hashicorp/tap/terraform
                timeout_seconds: 300
                location: US
          ```
-      5. Run `dbt build --profiles-dir ~/.dbt --target dev` to build all of the models.
+   6. Run `dbt build --profiles-dir ~/.dbt --target dev` to build all of the models.
