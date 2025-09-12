@@ -58,10 +58,10 @@ brew install hashicorp/tap/terraform
 
 ## 5. Setting Up dbt  
    1. I used dbt Cloud for this project hence why there is no `profiles.yml` file in this repo. [The Data Engineering Zoomcamp](https://github.com/DataTalksClub/data-engineering-zoomcamp/blob/main/04-analytics-engineering/dbt_cloud_setup.md) has some really great instructions that I followed here for getting my dbt environment set up which you can follow along with. If you'd prefer to use the CLI then you would need to:
-      1. Install dbt for BigQuery: `pip install dbt-bigquery`
-      2. Access the dbt folder: `cd dbt`
-      3. Creaet a profiles.yml file: `touch profiles.yml`
-      4. Fill in the file with the following information (this is just a guideline and may not be the exact setup):
+   2. Install dbt for BigQuery: `pip install dbt-bigquery`
+   3. Access the dbt folder: `cd dbt`
+   4. Create a profiles.yml file: `touch profiles.yml`
+   5. Fill in the file with the following information (this is just a guideline and may not be the exact setup):
          ```
          ccrs_dashboard:
            target: dev
