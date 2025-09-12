@@ -3,8 +3,8 @@ version: 2
 models:
 
 # FACT TABLE
-  - name: fact_crashes
-    description: "Fact table containing crash events with all crash attributes."
+  - name: reporting_crashes.sql
+    description: "Analytics and dashboard ready table containing crash events with crash attributes useful for analytics and reporting."
     columns:
       - name: collision_id
         description: "The unique identifier of the crash report"
@@ -76,17 +76,8 @@ models:
         description: "If the crash occurred on a county road or not"
       - name: is_freeway
         description: "If crash occurred on the highway or not"
-
-# DIMENSION TABLES
-  - name: dim_date
-    description: "Dimension table for crash date and time."
-    columns:
       - name: crash_quarter
         description: "Quarter extracted from crash_date"
-
-  - name: dim_county
-    description: "Dimension table for county that crash took place in."
-    columns:
       - name: county_name
         description: "Name of the county."
       - name: county_region_description
