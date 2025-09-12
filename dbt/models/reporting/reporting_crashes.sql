@@ -4,7 +4,7 @@
 
 with fact as (
     select * 
-    from {{ ref('stg_crashes_all') }}
+    from {{ ref('fact_crashes') }}
 ),
 
 dim_date as (

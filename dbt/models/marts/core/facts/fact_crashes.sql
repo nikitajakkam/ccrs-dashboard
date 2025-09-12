@@ -1,8 +1,6 @@
-{{ 
-    config(
-        materialized='table'
-    ) 
-}}
+{{ config(
+    materialized='table'
+) }}
 
 select
     collision_id,

@@ -1,7 +1,7 @@
 with source as (
     -- Step 1: Source all crash data from crashes_all table
     select * 
-    from {{ source('ccrs', 'crashes_all') }}
+    from {{ source('crashes', 'crashes_all') }}
 ),
 
 selected as (

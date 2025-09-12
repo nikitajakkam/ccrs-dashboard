@@ -1,6 +1,7 @@
-{{ 
-    config(materialized='table') 
-}}
+{{ config(
+    materialized='table'
+) }}
+
 
 select
     dhcs_county_code,
