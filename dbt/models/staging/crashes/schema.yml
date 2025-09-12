@@ -1,7 +1,7 @@
 version: 2
 
 sources:
-  - name: ccrs
+  - name: crashes
     database: ccrs-dashboard
     schema: crashes
 

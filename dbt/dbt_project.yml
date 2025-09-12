@@ -33,7 +33,22 @@ clean-targets:         # directories to be removed by `dbt clean`
 
 models:
   ccrs_dashboard:
-    +materialized: view  # default for all models in this project
+    staging:
+      +enabled: true
+      +materialized: view
+    marts:
+      core:
+        dims:
+          +enabled: true
+          +materialized: table
+        facts:
+          +enabled: true
+          +materialized: table
+    reporting:
+      +enabled: true
+      +materialized: table
+
+
 
 seeds:
   ccrs_dashboard:
