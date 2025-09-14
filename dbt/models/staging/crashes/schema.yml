@@ -64,7 +64,7 @@ models:
       - name: collision_description_2
         description: "Additional description of the collision (e.g. side swip, rear end, hit object)"
       - name: day_of_week
-        description: "Day of the week of the crash"
+        description: "Day of the week that the crash occurred on"
         tests:
           - accepted_values:
               values: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
