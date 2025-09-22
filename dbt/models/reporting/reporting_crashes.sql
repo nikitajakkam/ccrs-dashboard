@@ -19,8 +19,9 @@ dim_county as (
         dhcs_county_code,
         county_name,
         county_region_description,
+        fips_code,
         north_south_indicator
-    from {{ ref('dhcs_county_code_reference') }}
+    from {{ ref('dim_county') }}
 )
 
 select
@@ -59,6 +60,7 @@ select
     d.crash_quarter,
     c.county_name,
     c.county_region_description as county_region,
+    c.fips_code,
     c.north_south_indicator as norcal_or_socal
 from fact f
 left join dim_date d
