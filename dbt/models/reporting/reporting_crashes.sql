@@ -57,6 +57,7 @@ select
     f.traffic_control_device_description as traffic_control_device,
     f.is_county_road,
     f.is_freeway,
+    f.crash_fatal_nonfatal,
     d.crash_quarter,
     c.county_name,
     c.county_region_description as county_region,

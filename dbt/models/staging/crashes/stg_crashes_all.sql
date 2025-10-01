@@ -116,6 +116,14 @@ cleaned as (
         {{ boolean_to_yesno('isfreeway') }} as is_freeway
 
     from filtered
+),
+additional as (
+    select *,
+        case 
+            when number_killed > 0 then 'Fatal'
+            else 'Nonfatal'
+        end as crash_fatal_nonfatal
+    from cleaned
 )
 
-select * from cleaned
+select * from additional

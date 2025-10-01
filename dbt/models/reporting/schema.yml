@@ -76,6 +76,8 @@ models:
         description: "If the crash occurred on a county road or not"
       - name: is_freeway
         description: "If crash occurred on the highway or not"
+      - name: crash_fatal_nonfatal
+        description: "Whether or not crash resulted in fatalities"
       - name: crash_quarter
         description: "Quarter extracted from crash_date"
       - name: county_name
