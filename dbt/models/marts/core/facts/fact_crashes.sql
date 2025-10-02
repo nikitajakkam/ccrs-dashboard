@@ -36,6 +36,7 @@ select
     traffic_control_device_description,
     is_county_road,
     is_freeway,
-    crash_fatal_nonfatal
+    crash_fatal_nonfatal,
+    crash_datetime
 
 from {{ ref('stg_crashes_all') }}

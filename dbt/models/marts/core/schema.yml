@@ -78,6 +78,8 @@ models:
         description: "If crash occurred on the highway or not"
       - name: crash_fatal_nonfatal
         description: "Whether or not crash resulted in fatalities."
+      - name: crash_date_time
+        description: "Combined crash datetime"
 
 # Dimensional Tables
   - name: dim_date

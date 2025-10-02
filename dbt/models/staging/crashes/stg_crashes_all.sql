@@ -122,7 +122,8 @@ additional as (
         case 
             when number_killed > 0 then 'Fatal'
             else 'Nonfatal'
-        end as crash_fatal_nonfatal
+        end as crash_fatal_nonfatal,
+        DATETIME(DATE(crash_date), crash_time) AS crash_datetime,
     from cleaned
 )
 
