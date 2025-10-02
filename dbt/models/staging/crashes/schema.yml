@@ -172,3 +172,5 @@ models:
               values: ['Yes', 'No', 'Unknown']
       - name: crash_fatal_nonfatal
         description: "Fatal if number_killed > 0 else Nonfatal"
+      - name: crash_date_time
+        description: "Combined crash datetime"
