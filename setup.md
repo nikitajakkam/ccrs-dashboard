@@ -1,5 +1,10 @@
 # Setup Instructions
-Follow the steps in order to set up the project on your machine.
+⚠️ This project was developed and tested in a specific environment so reproducing the full setup on another machine may require:
+ - Access to GCP
+ - Setting environment variables or credentials
+ - Updating configuration files with your own project IDs or bucket names
+
+**For easier exploration, you can review parts of the pipeline instead of fulling deploying it.**
 
 ## 1. Terraform
 Instructions for how to download and setup Terraform for your machine can be found here: [Terraform Install Tutorial](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli)  
@@ -22,7 +27,7 @@ brew install hashicorp/tap/terraform
         https://console.cloud.google.com/apis/library/iam.googleapis.com
         https://console.cloud.google.com/apis/library/iamcredentials.googleapis.com
    12. Download the [gCloud CLI](https://cloud.google.com/sdk/docs/install) and follow instructions to set it up locally.
-   13. In Terminal, set an environment variable to point to your Service Account's JSON file:
+   13. In Terminal, set up an environment variable to point to your Service Account's JSON file:
        ```
        export GOOGLE_APPLICATION_CREDENTIALS="<path/to/your/service-account-authkeys>.json"
        ```
@@ -54,26 +59,7 @@ brew install hashicorp/tap/terraform
       - Connection Type: `Google Cloud`
       - Project ID: Project ID from Google CLoud
       - KeyFile Path: `/home/airflow/.gcp/credentials.json`
-   4. Click the toggle next to the DAG called **ccrs_gcp_ingestion**. The steps in the DAG should now run and populate the GCS buckets and crashes dataset in BigQuery that we created with Terraform.
+   4. Click the toggle next to the DAG called **ccrs_gcp_ingestion**. The steps in the DAG should now run and populate the GCS buckets and crashes dataset in BigQuery that was created via Terraform.
 
-## 5. Setting Up dbt  
-   1. I used dbt Cloud for this project hence why there is no `profiles.yml` file in this repo. [The Data Engineering Zoomcamp](https://github.com/DataTalksClub/data-engineering-zoomcamp/blob/main/04-analytics-engineering/dbt_cloud_setup.md) has some really great instructions that I followed here for getting my dbt environment set up which you can follow along with. If you'd prefer to use the CLI then you would need to:
-   2. Install dbt for BigQuery: `pip install dbt-bigquery`
-   3. Access the dbt folder: `cd dbt`
-   4. Create a profiles.yml file: `touch profiles.yml`
-   5. Fill in the file with the following information (this is just a guideline and may not be the exact setup):
-         ```
-         ccrs_dashboard:
-           target: dev
-           outputs:
-             dev:
-               type: bigquery
-               method: service-account
-               project: "add your gcp project id here"
-               dataset: crashes
-               keyfile: "add your /path/to/service-account.json" ** make sure to add this to your gitignore! **
-               threads: 4
-               timeout_seconds: 300
-               location: US
-         ```
-   6. Run `dbt build --profiles-dir ~/.dbt --target dev` to build all of the models.
+## 5. Setting Up dbt Cloud
+   1. I used dbt Cloud for this project which may make this part hard to reproduce. [The Data Engineering Zoomcamp](https://github.com/DataTalksClub/data-engineering-zoomcamp/blob/main/04-analytics-engineering/dbt_cloud_setup.md) has some instructions that I followed for getting my dbt environment set up which you can follow along with. 
