@@ -11,7 +11,7 @@ This project creates an ETL pipeline for exploring motor vehicle crash data from
 
 ## Pipeline Overview & Architecture
 <p align="center">
-<img src="images/pipeline-diagram.svg" alt="Data Pipeline Diagram" width="700"/>
+<img src="images/pipeline-diagram.svg" alt="Data Pipeline Diagram" width="1000"/>
 </p>
 
 ## Acknowledgements
