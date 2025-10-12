@@ -9,9 +9,19 @@ This project creates an ETL pipeline for exploring motor vehicle crash data from
 <img src="images/tableau-dashboard.png" alt="Tableau Dashboard Overview Page Screenshot" width="700"/>
 </p>
 
-## Pipeline Overview & Architecture
+## ⚙️ Pipeline Overview & Architecture
+This data pipeline was created using Google Cloud Platform (GCP) to automate the ingestion and processing of California Crash Reporting System (CCRS) data in a yearly basis. 
+
 <p align="center">
 <img src="images/pipeline-diagram.svg" alt="Data Pipeline Diagram" width="1000"/>
 </p>
+
+**Pipeline Setup**:
+- **Workflow Orchestration**: Apache Airflow
+- **Data Warehouse**: Google BigQuery
+- **Data Lake**: Google Cloud Storage
+- **Date Modeling & Transformation**: dbt Cloud
+- **Data Cleaning**: Python (Pandas)
+- **Infra as Code (IAC)**: Terraform
 
 ## Acknowledgements
