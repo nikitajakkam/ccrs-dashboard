@@ -1,10 +1,12 @@
 # Setup Instructions
-⚠️ This project was developed and tested in a specific environment so reproducing the full setup on another machine may require:
- - Access to GCP
- - Setting environment variables or credentials
- - Updating configuration files with your own project IDs or bucket names
 
-**For easier exploration, you can review parts of the pipeline instead of fulling deploying it.**
+> [!WARNING]  
+> This project was developed in a specific environment so reproducing the full setup on another machine may require:
+>  - Access to GCP
+>  - Setting environment variables or credentials
+>  - Updating configuration files with your own project IDs or bucket names
+>    
+> **For easier exploration, you can review parts of the pipeline instead of fulling deploying it.**
 
 ## 1. Terraform
 Instructions for how to download and setup Terraform for your machine can be found here: [Terraform Install Tutorial](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli)  
