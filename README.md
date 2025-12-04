@@ -30,12 +30,12 @@ This project creates an ETL pipeline for extracting, processing, and analyzing m
 This data pipeline was created using Google Cloud Platform (GCP) and is orchestrated via Apache Airflow to automate the ingestion and processing of crash data on a yearly basis. 
 
 ### Tools & Technologies
-- ⚡ **Workflow Orchestration**: Apache Airflow  
-- 🏢 **Data Warehouse**: Google BigQuery  
-- 💾 **Data Lake**: Google Cloud Storage (GCS)
-- 🔄 **Data Modeling & Transformations**: dbt Cloud  
-- 🐍 **Data Cleaning**: Python (Pandas)  
-- 🏗️ **Infrastructure as Code (IaC)**: Terraform
+- **Workflow Orchestration**: Apache Airflow  
+- **Data Warehouse**: Google BigQuery  
+- **Data Lake**: Google Cloud Storage (GCS)
+- **Data Modeling & Transformations**: dbt Cloud  
+- **Data Cleaning**: Python (Pandas)  
+- **Infrastructure as Code (IaC)**: Terraform
      
 <p align="center">
 <img src="images/pipeline-diagram.svg" alt="Data Pipeline Diagram" width="1000"/>
